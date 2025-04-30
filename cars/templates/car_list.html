@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Carros Disponíveis - Sistema de Carros{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6 mx-auto">
+            <form method="GET" action="{% url 'cars_list' %}" class="d-flex">
+                <input type="text" name="search" class="form-control me-2" placeholder="Buscar carro...">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search me-2"></i>Buscar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        {% if cars %}
+            {% for car in cars %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow">
+                        {% if car.photo %}
+                            <img src="{{ car.photo.url }}" class="card-img-top" alt="{{ car.model }} - {{ car.brand }}">
+                        {% else %}
+                            <div class="card-img-top bg-light text-center py-5">
+                                <i class="fas fa-car fa-3x text-muted"></i>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ car.brand }} {{ car.model }}</h5>
+                            <p class="card-text">
+                                <strong>Ano:</strong> {{ car.factory_year }}<br>
+                                <strong>Valor:</strong> R$ {{ car.value|floatformat:2 }}
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{% url 'car_detail' car.pk %}" class="btn btn-primary">
+                                    <i class="fas fa-eye me-2"></i>Ver Detalhes
+                                </a>
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'toggle_favorite' car.pk %}" class="btn btn-outline-danger">
+                                        {% if car in user.favorite_cars.all %}
+                                            <i class="fas fa-heart"></i>
+                                        {% else %}
+                                            <i class="far fa-heart"></i>
+                                        {% endif %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-car-crash fa-3x text-muted mb-3"></i>
+                <p class="text-muted">Nenhum carro encontrado.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .btn-outline-danger {
+        border: none;
+        padding: 0.5rem;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: transparent;
+        color: #dc3545;
+    }
+
+    .fa-heart {
+        color: #dc3545;
+    }
+</style>
+{% endblock %}
