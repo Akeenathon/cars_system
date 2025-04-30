@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
   <style>
     body {
         font-family: 'Open Sans', sans-serif;
-        background-color: #f8f9fa;
+        background-color: #1f2124;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -74,12 +74,12 @@
 
           {% if not user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'register' %}">
                 <i class="fas fa-user-plus me-1"></i> Cadastre-se
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'login' %}">
                 <i class="fas fa-sign-in-alt me-1"></i> Login
               </a>
             </li>
@@ -92,11 +92,14 @@
           </li>
 
           {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-sign-out-alt me-1"></i> Sair
-              </a>
-            </li>
+          <li class="nav-item">
+            <form method="post" action="{% url 'logout' %}" class="m-0">
+                {% csrf_token %}
+                <button type="submit" class="nav-link border-0 bg-transparent">
+                    <i class="fas fa-sign-out-alt me-1"></i> Sair
+                </button>
+            </form>
+        </li>
           {% endif %}
         </ul>
       </div>
