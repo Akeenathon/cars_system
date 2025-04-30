@@ -1,12 +1,12 @@
 from django import forms
-from models import Car
+from .models import Car
 
 
 class CarForm(forms.ModelForm):
 
     class Meta:
         model = Car
-        fields = '__all__'
+        exclude = ['favorited_by',]
 
     def clean_value(self):   # Validação de valor dos veiculos cadastrados
         value = self.cleaned_data.get('value')

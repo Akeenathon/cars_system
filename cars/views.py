@@ -13,9 +13,9 @@ class CarListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset().order_by('model')
-        model = self.request.GET.get('model')
-        if model:
-            queryset = queryset.filter(model__icontains=model)
+        search = self.request.GET.get('search')
+        if search:
+            queryset = queryset.filter(model__icontains=search)
 
         return queryset
 
