@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib.auth import views as auth_views
 from cars import views
 from users.views import register_view
@@ -18,4 +20,4 @@ urlpatterns = [
     path('cars/<int:pk>/detail/', views.CarDetailView.as_view(), name='car_detail'),
     path('cars/<int:pk>/update/', views.CarUpdateView.as_view(), name='car_update'),
     path('cars/<int:pk>/delete/', views.CarDeleteView.as_view(), name='car_delete'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
