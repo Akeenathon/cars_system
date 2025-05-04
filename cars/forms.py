@@ -7,6 +7,28 @@ class CarForm(forms.ModelForm):
     class Meta:
         model = Car
         exclude = ['favorited_by',]
+        widgets = {
+            'brand': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Marca do veiculo'}),
+            'model': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Modelo do veiculo'}),
+            'color': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Cor do veiculo'}),
+            'factory_year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ano de Fabricação'}),
+            'model_year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ano do Modelo'}),
+            'plate': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Placa do veiculo'}),
+            'value': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Valor do veiculo'}),
+            'photo': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'Imagem do veiculo'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descrição do veiculo', 'rows': 3}),
+        }
+        labels = {
+            'brand': 'Marca',
+            'model': 'Modelo',
+            'color': 'Cor',
+            'factory_year': 'Ano de Fabricação',
+            'model_year': 'Ano do Modelo',
+            'plate': 'Placa',
+            'value': 'Valor',
+            'photo': 'Imagem',
+            'bio': 'Descrição',
+        }
 
     def clean_value(self):   # Validação de valor dos veiculos cadastrados
         value = self.cleaned_data.get('value')

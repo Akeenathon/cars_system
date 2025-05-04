@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table}}
-        </table>
-
-<input type="submit" value="Cadastrar" class="btn btn-primary">
-    </form>    
+    <div class="container mt-4">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="mb-4">
+                {{ form.as_table}}
+            </table>
+            
+            <div class="buttons-container mt-4">
+                <input type="submit" value="Cadastrar" class="btn btn-primary">
+                <a href="{% url 'car_list' %}" class="btn btn-secondary">Voltar</a>
+            </div>
+        </form>    
+    </div>
 {% endblock %}
