@@ -8,7 +8,7 @@ class CarForm(forms.ModelForm):
         model = Car
         exclude = ['favorited_by',]
         widgets = {
-            'brand': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Marca do veiculo'}),
+            'brand': forms.Select(attrs={'class': 'form-control'}),
             'model': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Modelo do veiculo'}),
             'color': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Cor do veiculo'}),
             'factory_year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ano de Fabricação'}),
@@ -16,7 +16,7 @@ class CarForm(forms.ModelForm):
             'plate': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Placa do veiculo'}),
             'value': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Valor do veiculo'}),
             'photo': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'Imagem do veiculo'}),
-            'bio': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descrição do veiculo', 'rows': 3}),
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Deixar em branco para gerar descrição automatica', 'rows': 3}),
         }
         labels = {
             'brand': 'Marca',
