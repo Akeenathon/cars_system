@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from cars import views
-from users.views import register_view
+from users.views import register_view, profile_view, toggle_favorite
 
 
 urlpatterns = [
@@ -13,6 +13,7 @@ urlpatterns = [
     path('register/', register_view, name='register'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    path('profile/', profile_view, name='profile'),
 
     path('', views.CarListView.as_view(), name='home'),
     path('cars/list/', views.CarListView.as_view(), name='car_list'),
@@ -20,4 +21,6 @@ urlpatterns = [
     path('cars/<int:pk>/detail/', views.CarDetailView.as_view(), name='car_detail'),
     path('cars/<int:pk>/update/', views.CarUpdateView.as_view(), name='car_update'),
     path('cars/<int:pk>/delete/', views.CarDeleteView.as_view(), name='car_delete'),
+    path('cars/<int:car_id>/favorite/', toggle_favorite, name='toggle_favorite'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

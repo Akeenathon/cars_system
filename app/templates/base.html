@@ -42,7 +42,7 @@
     }
 
     footer {
-        background-color: #16171a;
+        background-color: #343a40;
         color: #fff;
         padding: 1rem 0;
         margin-top: auto;
@@ -61,7 +61,7 @@
         <ul class="navbar-nav ms-auto">
           {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'profile' %}">
                 <i class="fas fa-user-circle me-1"></i> {{ user.username }}
               </a>
             </li>
