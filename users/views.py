@@ -35,7 +35,7 @@ def profile_view(request):
             messages.error(request, 'Por favor, corrija os erros abaixo.')
     else:
         form = PasswordChangeForm(request.user)
-    
+
     favorite_cars = request.user.favorite_cars.all()
     return render(request, 'profile.html', {
         'form': form,
@@ -48,8 +48,7 @@ def toggle_favorite(request, car_id):
     car = get_object_or_404(Car, id=car_id)
     if car.favorited_by.filter(id=request.user.id).exists():
         car.favorited_by.remove(request.user)
-        messages.success(request, 'Carro removido dos favoritos.')
+        return redirect('profile')
     else:
         car.favorited_by.add(request.user)
-        messages.success(request, 'Carro adicionado aos favoritos.')
-    return redirect('car_list')
+        return redirect('car_list')

@@ -5,17 +5,19 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title text-center mb-4">Login</h5>
+      <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+          <h3 class="mb-0">Login</h3>
+        </div>
+        <div class="card-body p-4">
           <form method="post">
             {% csrf_token %}
             <div class="mb-3">
-              <label for="username" class="form-label">Usuário</label>
+              <label for="username" class="form-label fw-bold">Usuário</label>
               <input type="text" class="form-control" id="username" name="username" required>
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Senha</label>
+              <label for="password" class="form-label fw-bold">Senha</label>
               <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="d-grid gap-2">
@@ -37,8 +39,45 @@
             </div>
           {% endif %}
         </div>
+        <div class="card-footer text-center py-3">
+          <p class="mb-0">Não tem uma conta? 
+            <a href="{% url 'register' %}" class="text-primary fw-bold">Cadastre-se</a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+
+
+  .form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+  }
+
+  .input-group .form-control {
+    border-left: none;
+  }
+
+  .card {
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+
+  .card-header {
+    border-bottom: none;
+  }
+
+  .btn-primary {
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+  }
+</style>
 {% endblock %}

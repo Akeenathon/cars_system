@@ -10,7 +10,6 @@ class CarListView(ListView):
     context_object_name = 'cars'
     paginate_by = 12
 
-
     def get_queryset(self):
         queryset = super().get_queryset().order_by('model')
         search = self.request.GET.get('search')
@@ -37,7 +36,7 @@ class CarUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.Car
     template_name = 'car_update.html'
     form_class = forms.CarForm
-    success_url =reverse_lazy('car_list')
+    success_url = reverse_lazy('car_list')
     permission_required = 'cars.change_car'
 
 

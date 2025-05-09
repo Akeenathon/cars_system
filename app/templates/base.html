@@ -65,11 +65,13 @@
                 <i class="fas fa-user-circle me-1"></i> {{ user.username }}
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'car_create' %}">
-                <i class="fas fa-plus-circle me-1"></i> Cadastrar carro
-              </a>
-            </li>
+            {% if perms.cars.add_car %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'car_create' %}">
+                  <i class="fas fa-plus-circle me-1"></i> Cadastrar carro
+                </a>
+              </li>
+            {% endif %}
           {% endif %}
 
           {% if not user.is_authenticated %}

@@ -1,9 +1,9 @@
 import google.generativeai as gemini
-import os
 
 
 # Configurando a API KEY
 gemini.configure(api_key='AIzaSyAFpH31XoGhsZQuyEj0CgrqgVqT2yOmwX0')
+
 
 def get_car_ai_bio(model, brand, year):
     # Criando a prompt (pergunta) a ser feita, (brand, model, year são as informações sobre o veiculo que sera adicionado)

@@ -38,38 +38,29 @@
                     <form method="POST" class="needs-validation" novalidate>
                         {% csrf_token %}
                         
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label for="old_password" class="form-label fw-bold">Senha Atual</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                {{ form.old_password }}
-                            </div>
+                                <input type="password" name="old_password" class="form-control" id="old_password" required>
                             {% if form.old_password.errors %}
                                 <div class="invalid-feedback d-block">
                                     {{ form.old_password.errors }}
                                 </div>
                             {% endif %}
                         </div>
-
-                        <div class="mb-3">
+                        
+                        <div class="mb-4">
                             <label for="new_password1" class="form-label fw-bold">Nova Senha</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                {{ form.new_password1 }}
-                            </div>
+                                <input type="password" name="new_password1" class="form-control" id="new_password1" required>
                             {% if form.new_password1.errors %}
                                 <div class="invalid-feedback d-block">
                                     {{ form.new_password1.errors }}
                                 </div>
                             {% endif %}
                         </div>
-
-                        <div class="mb-3">
+                        
+                        <div class="mb-4">
                             <label for="new_password2" class="form-label fw-bold">Confirmar Nova Senha</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                {{ form.new_password2 }}
-                            </div>
+                                <input type="password" name="new_password2" class="form-control" id="new_password2" required>
                             {% if form.new_password2.errors %}
                                 <div class="invalid-feedback d-block">
                                     {{ form.new_password2.errors }}
@@ -139,12 +130,6 @@
 </div>
 
 <style>
-    .form-control {
-        border-radius: 0.25rem;
-        padding: 0.75rem 1rem;
-        border: 1px solid #ced4da;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
 
     .form-control:focus {
         border-color: #80bdff;
@@ -192,5 +177,24 @@
     .fa-heart {
         color: #dc3545;
     }
+
+    .custom-input {
+        border-radius: 0.375rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid #ced4da;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        margin-bottom: 0.5rem;
+    }
+
+    .custom-input:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        outline: none;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
 </style>
 {% endblock %} 
