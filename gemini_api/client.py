@@ -1,8 +1,12 @@
 import google.generativeai as gemini
+from dotenv import load_dotenv
+import os
 
 
-# Configurando a API KEY
-gemini.configure(api_key='AIzaSyAFpH31XoGhsZQuyEj0CgrqgVqT2yOmwX0')
+# Carregando as variaveis de ambiente do arquivo .env
+load_dotenv()
+# Configurando a chave de API do Gemini
+gemini.configure(api_key=os.getenv('GEMINI_API_KEY'))  # Configurando a chave de API do Gemini
 
 
 def get_car_ai_bio(model, brand, year):
